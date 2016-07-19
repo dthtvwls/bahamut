@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Box:</strong>
+  <%= @version.box_id %>
+</p>
+
+<p>
+  <strong>Version:</strong>
+  <%= @version.version %>
+</p>
+
+<p>
+  <strong>Description html:</strong>
+  <%= @version.description_html %>
+</p>
+
+<p>
+  <strong>Description markdown:</strong>
+  <%= @version.description_markdown %>
+</p>
+
+<%= link_to 'Edit', edit_version_path(@version) %> |
+<%= link_to 'Back', versions_path %>

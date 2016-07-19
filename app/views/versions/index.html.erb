@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Versions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Box</th>
+      <th>Version</th>
+      <th>Description html</th>
+      <th>Description markdown</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @versions.each do |version| %>
+      <tr>
+        <td><%= version.box_id %></td>
+        <td><%= version.version %></td>
+        <td><%= version.description_html %></td>
+        <td><%= version.description_markdown %></td>
+        <td><%= link_to 'Show', version %></td>
+        <td><%= link_to 'Edit', edit_version_path(version) %></td>
+        <td><%= link_to 'Destroy', version, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Version', new_version_path %>
