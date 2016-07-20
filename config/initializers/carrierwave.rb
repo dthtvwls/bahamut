@@ -6,4 +6,5 @@ CarrierWave.configure do |config|
   }
   config.fog_directory = ENV['S3_BUCKET']
   config.max_file_size = 1024.megabytes
+  config.validate_filename_format = false
 end
