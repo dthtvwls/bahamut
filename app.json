@@ -1,0 +1,15 @@
+{
+  "name": "Schmatlas",
+  "description": "Shim Atlas",
+  "keywords": ["vm", "virtual machine", "image", "box", "vagrant", "packer", "atlas", "hashicorp"],
+  "repository": "https://github.com/dthtvwls/schmatlas",
+  "scripts": {
+    "postdeploy": "bundle exec rake db:schema:load"
+  },
+  "env": {
+    "AWS_ACCESS_KEY_ID": { "value": "CHANGEME" },
+    "AWS_SECRET_ACCESS_KEY": { "value": "CHANGEME" },
+    "S3_BUCKET": { "value": "CHANGEME" }
+  },
+  "addons": ["heroku-postgresql"]
+}
