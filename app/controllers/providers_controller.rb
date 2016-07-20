@@ -10,6 +10,10 @@ class ProvidersController < ApplicationController
   # GET /providers/1
   # GET /providers/1.json
   def show
+    if params[:key]
+      @provider.update_attribute(:key, params[:key])
+      redirect_to user_box_version_provider_url(@provider.params)
+    end
   end
 
   # GET /providers/new
@@ -19,6 +23,8 @@ class ProvidersController < ApplicationController
 
   # GET /providers/1/edit
   def edit
+    @uploader = Provider.new(@provider.attributes).box_url
+    @uploader.success_action_redirect = user_box_version_provider_url(@provider.params)
   end
 
   # POST /providers
@@ -69,6 +75,6 @@ class ProvidersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def provider_params
-      params.require(:provider).permit(:version_id, :name, :url)
+      params.require(:provider).permit(:version_id, :name, :box_url)
     end
 end

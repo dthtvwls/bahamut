@@ -15,8 +15,8 @@ gem 'jquery-rails'
 gem 'jbuilder'
 
 gem 'friendly_id'
-gem 'carrierwave'
-gem 'fog'
+gem 'carrierwave_direct'
+gem 'fog-aws'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

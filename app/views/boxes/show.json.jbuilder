@@ -5,6 +5,7 @@ json.versions @box.versions do |version|
   json.status 'active'
   json.extract! version, :description_html, :description_markdown
   json.providers version.providers do |provider|
-    json.extract! provider, :name, :url
+    json.name provider.name
+    json.url provider.box_url.url
   end
 end
