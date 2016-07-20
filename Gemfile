@@ -13,10 +13,10 @@ gem 'puma'
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
+gem 'uglifier'
 
 gem 'friendly_id'
 gem 'carrierwave_direct'
-gem 'fog-aws'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
