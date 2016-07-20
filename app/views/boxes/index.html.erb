@@ -8,6 +8,7 @@
       <tr>
         <td><%= link_to "#{box.user.name}/#{box.name}", user_box_versions_path(box.versions.new.params) %></td>
         <td><%= box.short_description %></td>
+        <td><%= link_to 'box_url.json', user_box_path(:json, box.params) %></td>
         <td><%= link_to '📝', edit_user_box_path(box.params) %></td>
         <td><%= link_to '🚮', user_box_path(box.params), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
