@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20160719234234) do
   create_table "providers", force: :cascade do |t|
     t.integer  "version_id"
     t.string   "name"
-    t.integer  "box",        null: false
+    t.string   "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

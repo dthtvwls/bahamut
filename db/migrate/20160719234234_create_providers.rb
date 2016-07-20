@@ -3,7 +3,7 @@ class CreateProviders < ActiveRecord::Migration[5.0]
     create_table :providers do |t|
       t.integer :version_id
       t.string :name
-      t.column :box, :oid, null: false
+      t.string :url
 
       t.timestamps
     end
