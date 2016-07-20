@@ -17,6 +17,7 @@ gem 'uglifier'
 
 gem 'friendly_id'
 gem 'carrierwave_direct'
+gem 'kramdown'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

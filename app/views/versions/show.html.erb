@@ -11,13 +11,8 @@
 </p>
 
 <p>
-  <strong>Description html:</strong>
-  <%= @version.description_html %>
-</p>
-
-<p>
-  <strong>Description markdown:</strong>
-  <%= @version.description_markdown %>
+  <strong>Description:</strong>
+  <%= @version.description_html.html_safe %>
 </p>
 
 <%= link_to 'Edit', edit_user_box_version_path(@version.params) %> |

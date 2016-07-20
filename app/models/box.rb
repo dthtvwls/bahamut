@@ -8,6 +8,8 @@ class Box < ApplicationRecord
   validates :name, presence: true, uniqueness: { scope: :user }, format: { with: /\A[A-Za-z0-9-]+\z/ }
   validates_associated :user, presence: true
 
+  default_scope { order(:name) }
+
   after_initialize do
     self.description ||= ''
     self.short_description ||= ''

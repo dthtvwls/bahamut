@@ -1,19 +1,25 @@
 <p id="notice"><%= notice %></p>
 
+<h1><%= "#{@provider.version.box.user.name}/#{@provider.version.box.name}" %></h1>
+
 <p>
   <strong>Version:</strong>
   <%= @provider.version.version %>
 </p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Provider:</strong>
   <%= @provider.name %>
 </p>
 
-<p>
-  <strong>Box url:</strong>
-  <%= @provider.box_url %>
-</p>
+<%= direct_upload_form_for @uploader do |f| %>
+  <div class="field">
+    <%= f.file_field :box_url, required: true %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Upload' %>
+  </div>
+<% end %>
 
 <%= link_to 'Edit', edit_user_box_version_provider_path(@provider.params) %> |
 <%= link_to 'Back', user_box_version_providers_path %>

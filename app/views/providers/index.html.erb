@@ -3,24 +3,14 @@
 <h1>Providers</h1>
 
 <table>
-  <thead>
-    <tr>
-      <th>Version</th>
-      <th>Name</th>
-      <th>Box url</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
   <tbody>
     <% @providers.each do |provider| %>
       <tr>
-        <td><%= provider.version.version %></td>
         <td><%= provider.name %></td>
-        <td><%= provider.box_url %></td>
-        <td><%= link_to 'Show', user_box_version_provider_path(provider.params) %></td>
-        <td><%= link_to 'Edit', edit_user_box_version_provider_path(provider.params) %></td>
-        <td><%= link_to 'Destroy', user_box_version_provider_path(provider.params), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Upload', user_box_version_provider_path(provider.params) %></td>
+        <td><%= link_to 'Download', provider.box_url.url %></td>
+        <td><%= link_to '📝', edit_user_box_version_provider_path(provider.params) %></td>
+        <td><%= link_to '🚮', user_box_version_provider_path(provider.params), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +18,5 @@
 
 <br>
 
-<%= link_to 'New Provider', new_user_box_version_provider_path %>
+<%= link_to 'New Provider', new_user_box_version_provider_path %> |
+<%= link_to 'Back', user_box_versions_path(@providers.new.version.params.except(:id)) %>
