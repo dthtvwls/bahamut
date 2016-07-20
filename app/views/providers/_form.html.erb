@@ -1,4 +1,4 @@
-<%= form_for(provider) do |f| %>
+<%= form_for(provider, url: provider.new_record? ? user_box_version_providers_path : user_box_version_provider_path(provider.params), html: { multipart: true }) do |f| %>
   <% if provider.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(provider.errors.count, "error") %> prohibited this provider from being saved:</h2>
@@ -13,17 +13,17 @@
 
   <div class="field">
     <%= f.label :version_id %>
-    <%= f.number_field :version_id %>
+    <%= f.select :version_id, options_from_collection_for_select([Version.find(params[:version_id])], :id, :version) %>
   </div>
 
   <div class="field">
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.select :name, ['virtualbox'] %>
   </div>
 
   <div class="field">
     <%= f.label :box %>
-    <%= f.text_field :box %>
+    <%= f.file_field :box %>
   </div>
 
   <div class="actions">

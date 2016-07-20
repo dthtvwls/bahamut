@@ -1,4 +1,4 @@
-<%= form_for(version) do |f| %>
+<%= form_for(version, url: version.new_record? ? user_box_versions_path : user_box_version_path(version.params)) do |f| %>
   <% if version.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(version.errors.count, "error") %> prohibited this version from being saved:</h2>
@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :box_id %>
-    <%= f.number_field :box_id %>
+    <%= f.select :box_id, options_from_collection_for_select([Box.find(params[:box_id])], :id, :name) %>
   </div>
 
   <div class="field">

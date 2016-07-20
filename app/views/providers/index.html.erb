@@ -15,12 +15,12 @@
   <tbody>
     <% @providers.each do |provider| %>
       <tr>
-        <td><%= provider.version_id %></td>
+        <td><%= provider.version.version %></td>
         <td><%= provider.name %></td>
         <td><%= provider.box %></td>
-        <td><%= link_to 'Show', provider %></td>
-        <td><%= link_to 'Edit', edit_provider_path(provider) %></td>
-        <td><%= link_to 'Destroy', provider, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', user_box_version_provider_path(provider.params) %></td>
+        <td><%= link_to 'Edit', edit_user_box_version_provider_path(provider.params) %></td>
+        <td><%= link_to 'Destroy', user_box_version_provider_path(provider.params), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Provider', new_provider_path %>
+<%= link_to 'New Provider', new_user_box_version_provider_path %>

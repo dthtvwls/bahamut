@@ -1,4 +1,4 @@
-<%= form_for(box) do |f| %>
+<%= form_for(box, url: box.new_record? ? user_boxes_path : user_box_path(box.params)) do |f| %>
   <% if box.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(box.errors.count, "error") %> prohibited this box from being saved:</h2>
@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :user_id %>
-    <%= f.number_field :user_id %>
+    <%= f.select :user_id, options_from_collection_for_select([User.find(params[:user_id])], :id, :name) %>
   </div>
 
   <div class="field">

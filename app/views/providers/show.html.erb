@@ -2,7 +2,7 @@
 
 <p>
   <strong>Version:</strong>
-  <%= @provider.version_id %>
+  <%= @provider.version.version %>
 </p>
 
 <p>
@@ -15,5 +15,5 @@
   <%= @provider.box %>
 </p>
 
-<%= link_to 'Edit', edit_provider_path(@provider) %> |
-<%= link_to 'Back', providers_path %>
+<%= link_to 'Edit', edit_user_box_version_provider_path(@provider.params) %> |
+<%= link_to 'Back', user_box_version_providers_path %>

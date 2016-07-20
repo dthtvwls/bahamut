@@ -4,7 +4,7 @@ class VersionsController < ApplicationController
   # GET /versions
   # GET /versions.json
   def index
-    @versions = Version.all
+    @versions = Box.find(params[:box_id]).versions
   end
 
   # GET /versions/1
@@ -28,7 +28,7 @@ class VersionsController < ApplicationController
 
     respond_to do |format|
       if @version.save
-        format.html { redirect_to @version, notice: 'Version was successfully created.' }
+        format.html { redirect_to user_box_version_url(@version.params), notice: 'Version was successfully created.' }
         format.json { render :show, status: :created, location: @version }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class VersionsController < ApplicationController
   def update
     respond_to do |format|
       if @version.update(version_params)
-        format.html { redirect_to @version, notice: 'Version was successfully updated.' }
+        format.html { redirect_to user_box_version_url(@version.params), notice: 'Version was successfully updated.' }
         format.json { render :show, status: :ok, location: @version }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class VersionsController < ApplicationController
   def destroy
     @version.destroy
     respond_to do |format|
-      format.html { redirect_to versions_url, notice: 'Version was successfully destroyed.' }
+      format.html { redirect_to user_box_versions_url, notice: 'Version was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

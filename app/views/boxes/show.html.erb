@@ -2,7 +2,7 @@
 
 <p>
   <strong>User:</strong>
-  <%= @box.user_id %>
+  <%= @box.user.name %>
 </p>
 
 <p>
@@ -20,5 +20,5 @@
   <%= @box.name %>
 </p>
 
-<%= link_to 'Edit', edit_box_path(@box) %> |
-<%= link_to 'Back', boxes_path %>
+<%= link_to 'Edit', edit_user_box_path %> |
+<%= link_to 'Back', user_boxes_path %>

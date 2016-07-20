@@ -16,13 +16,13 @@
   <tbody>
     <% @versions.each do |version| %>
       <tr>
-        <td><%= version.box_id %></td>
+        <td><%= version.box.name %></td>
         <td><%= version.version %></td>
         <td><%= version.description_html %></td>
         <td><%= version.description_markdown %></td>
-        <td><%= link_to 'Show', version %></td>
-        <td><%= link_to 'Edit', edit_version_path(version) %></td>
-        <td><%= link_to 'Destroy', version, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', user_box_version_providers_path(version.providers.new.params) %></td>
+        <td><%= link_to 'Edit', edit_user_box_version_path(version.params) %></td>
+        <td><%= link_to 'Destroy', user_box_version_path(version.params), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Version', new_version_path %>
+<%= link_to 'New Version', new_user_box_version_path %>

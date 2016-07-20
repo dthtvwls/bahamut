@@ -16,13 +16,13 @@
   <tbody>
     <% @boxes.each do |box| %>
       <tr>
-        <td><%= box.user_id %></td>
+        <td><%= box.user.name %></td>
         <td><%= box.description %></td>
         <td><%= box.short_description %></td>
         <td><%= box.name %></td>
-        <td><%= link_to 'Show', box %></td>
-        <td><%= link_to 'Edit', edit_box_path(box) %></td>
-        <td><%= link_to 'Destroy', box, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', user_box_versions_path(box.versions.new.params) %></td>
+        <td><%= link_to 'Edit', edit_user_box_path(box.params) %></td>
+        <td><%= link_to 'Destroy', user_box_path(box.params), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Box', new_box_path %>
+<%= link_to 'New Box', new_user_box_path %>

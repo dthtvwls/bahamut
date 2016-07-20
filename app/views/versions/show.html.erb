@@ -2,7 +2,7 @@
 
 <p>
   <strong>Box:</strong>
-  <%= @version.box_id %>
+  <%= @version.box.name %>
 </p>
 
 <p>
@@ -20,5 +20,5 @@
   <%= @version.description_markdown %>
 </p>
 
-<%= link_to 'Edit', edit_version_path(@version) %> |
-<%= link_to 'Back', versions_path %>
+<%= link_to 'Edit', edit_user_box_version_path(@version.params) %> |
+<%= link_to 'Back', user_box_versions_path %>
