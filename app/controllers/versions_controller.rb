@@ -28,7 +28,7 @@ class VersionsController < ApplicationController
 
     respond_to do |format|
       if @version.save
-        format.html { redirect_to user_box_version_url(@version.params), notice: 'Version was successfully created.' }
+        format.html { redirect_to users_url, notice: 'Version was successfully created.' }
         format.json { render :show, status: :created, location: @version }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class VersionsController < ApplicationController
   def update
     respond_to do |format|
       if @version.update(version_params)
-        format.html { redirect_to user_box_version_url(@version.params), notice: 'Version was successfully updated.' }
+        format.html { redirect_to users_url, notice: 'Version was successfully updated.' }
         format.json { render :show, status: :ok, location: @version }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class VersionsController < ApplicationController
   def destroy
     @version.destroy
     respond_to do |format|
-      format.html { redirect_to user_box_versions_url, notice: 'Version was successfully destroyed.' }
+      format.html { redirect_to users_url, notice: 'Version was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -64,7 +64,7 @@ class VersionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_version
-      @version = Version.find(params[:id])
+      @version = Version.find(params.slice(:user_id, :box_id, :id))
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

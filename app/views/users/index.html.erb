@@ -1,19 +1,42 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Users</h1>
-
-<table>
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= link_to user.name, user_boxes_path(user) %></td>
-        <td><%= link_to '📝', edit_user_path(user) %></td>
-        <td><%= link_to '🚮', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New User', new_user_path %>
+<ul>
+  <% @users.each do |user| %>
+    <li>
+      <%= user.name %>
+      <%= link_to '📝', edit_polymorphic_path([user]) %>
+      <%= link_to '🚮', polymorphic_path([user]), method: :delete, data: { confirm: 'Are you sure?' } %>
+      <ul>
+        <% user.boxes.each do |box| %>
+          <li>
+            <%= box.name %>
+            <%= link_to '📝', edit_polymorphic_path([user, box]) %>
+            <%= link_to '🚮', polymorphic_path([user, box]), method: :delete, data: { confirm: 'Are you sure?' } %>
+            <ul>
+              <% box.versions.each do |version| %>
+                <li>
+                  <%= version.version %>
+                  <%= link_to '📝', edit_polymorphic_path([user, box, version]) %>
+                  <%= link_to '🚮', polymorphic_path([user, box, version]), method: :delete, data: { confirm: 'Are you sure?' } %>
+                  <ul>
+                    <% version.providers do |provider| %>
+                      <li>
+                        <%= provider.name %>
+                        <%= link_to '📝', edit_polymorphic_path([user, box, version, provider]) %>
+                        <%= link_to '🚮', polymorphic_path([user, box, version, provider]), method: :delete, data: { confirm: 'Are you sure?' } %>
+                      </li>
+                    <% end %>
+                    <li><%= link_to 'New Provider', new_polymorphic_path([user, box, version, version.providers.new]) %></li>
+                  </ul>
+                </li>
+              <% end %>
+              <li><%= link_to 'New Version', new_polymorphic_path([user, box, box.versions.new]) %></li>
+            </ul>
+          </li>
+        <% end %>
+        <li><%= link_to 'New Box', new_polymorphic_path([user, user.boxes.new]) %></li>
+      </ul>
+    </li>
+  <% end %>
+  <li><%= link_to 'New User', new_polymorphic_path([@users.new]) %></li>
+</ul>

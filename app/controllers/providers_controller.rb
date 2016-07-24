@@ -12,10 +12,10 @@ class ProvidersController < ApplicationController
   def show
     if params[:key]
       @provider.update_attribute(:key, params[:key])
-      redirect_to user_box_version_provider_url(@provider.params), notice: 'File was successfully uploaded.'
+      redirect_to users_url, notice: 'File was successfully uploaded.'
     else
       @uploader = Provider.new(@provider.attributes).box_url
-      @uploader.success_action_redirect = user_box_version_provider_url(@provider.params)
+      @uploader.success_action_redirect = polymorphic_url([@provider.version.box.user, @provider.version.box, @provider.version, @provider])
     end
   end
 
@@ -35,7 +35,7 @@ class ProvidersController < ApplicationController
 
     respond_to do |format|
       if @provider.save
-        format.html { redirect_to user_box_version_provider_url(@provider.params), notice: 'Provider was successfully created.' }
+        format.html { redirect_to users_url, notice: 'Provider was successfully created.' }
         format.json { render :show, status: :created, location: @provider }
       else
         format.html { render :new }
@@ -49,7 +49,7 @@ class ProvidersController < ApplicationController
   def update
     respond_to do |format|
       if @provider.update(provider_params)
-        format.html { redirect_to user_box_version_provider_url(@provider.params), notice: 'Provider was successfully updated.' }
+        format.html { redirect_to users_url, notice: 'Provider was successfully updated.' }
         format.json { render :show, status: :ok, location: @provider }
       else
         format.html { render :edit }
@@ -63,7 +63,7 @@ class ProvidersController < ApplicationController
   def destroy
     @provider.destroy
     respond_to do |format|
-      format.html { redirect_to user_box_version_providers_url, notice: 'Provider was successfully destroyed.' }
+      format.html { redirect_to users_url, notice: 'Provider was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -71,7 +71,7 @@ class ProvidersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_provider
-      @provider = Provider.find(params[:id])
+      @provider = Provider.find(params.slice(:user_id, :box_id, :version_id, :id))
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

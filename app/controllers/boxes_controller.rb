@@ -28,7 +28,7 @@ class BoxesController < ApplicationController
 
     respond_to do |format|
       if @box.save
-        format.html { redirect_to user_box_url(@box.params), notice: 'Box was successfully created.' }
+        format.html { redirect_to users_url, notice: 'Box was successfully created.' }
         format.json { render :show, status: :created, location: @box }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class BoxesController < ApplicationController
   def update
     respond_to do |format|
       if @box.update(box_params)
-        format.html { redirect_to user_box_url(@box.params), notice: 'Box was successfully updated.' }
+        format.html { redirect_to users_url, notice: 'Box was successfully updated.' }
         format.json { render :show, status: :ok, location: @box }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class BoxesController < ApplicationController
   def destroy
     @box.destroy
     respond_to do |format|
-      format.html { redirect_to user_boxes_url, notice: 'Box was successfully destroyed.' }
+      format.html { redirect_to users_url, notice: 'Box was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -64,7 +64,7 @@ class BoxesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_box
-      @box = Box.find(params[:id])
+      @box = Box.find(params.slice(:user_id, :id))
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
