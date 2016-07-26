@@ -64,7 +64,10 @@ class BoxesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_box
-      @box = Box.find(params.slice(:user_id, :id))
+      @box = Box.find_by(
+        user: User.find(params[:user_id]),
+        name: params[:id]
+      )
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

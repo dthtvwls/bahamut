@@ -71,7 +71,10 @@ class ProvidersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_provider
-      @provider = Provider.find(params.slice(:user_id, :box_id, :version_id, :id))
+      @provider = Provider.find_by(
+        version: User.find(params[:user_id]).boxes.find(params[:box_id]).versions.find(params[:version_id]),
+        name: params[:id]
+      )
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

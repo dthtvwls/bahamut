@@ -64,7 +64,10 @@ class VersionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_version
-      @version = Version.find(params.slice(:user_id, :box_id, :id))
+      @version = Version.find_by(
+        box: User.find(params[:user_id]).boxes.find(params[:box_id]),
+        version: params[:id]
+      )
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

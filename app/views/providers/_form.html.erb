@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :version_id %>
-    <%= f.select :version_id, options_from_collection_for_select([Version.find(params[:version_id])], :id, :version) %>
+    <%= f.select :version_id, options_from_collection_for_select([User.find(params[:user_id]).boxes.find(params[:box_id]).versions.find(params[:version_id])], :id, :version) %>
   </div>
 
   <div class="field">

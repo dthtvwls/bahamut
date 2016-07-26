@@ -1,15 +1,28 @@
 {
-  "name": "Schmatlas",
-  "description": "Shim Atlas",
+  "name": "Bahamut",
+  "description": "Holds up world (Shim Atlas)",
   "keywords": ["vm", "virtual machine", "image", "box", "vagrant", "packer", "atlas", "hashicorp"],
-  "repository": "https://github.com/dthtvwls/schmatlas",
+  "repository": "https://github.com/JunGroupProductions/bahamut",
   "scripts": {
     "postdeploy": "bundle exec rake db:schema:load"
   },
   "env": {
-    "AWS_ACCESS_KEY_ID": { "value": "CHANGEME" },
-    "AWS_SECRET_ACCESS_KEY": { "value": "CHANGEME" },
-    "S3_BUCKET": { "value": "CHANGEME" }
+    "AUTH_USERNAME": {
+      "description": "A basic auth username for end users to connect"
+    },
+    "AUTH_PASSWORD": {
+      "description": "A password to go with the basic auth username",
+      "generator": "secret"
+    },
+    "S3_BUCKET": {
+      "description": "An S3 bucket to store images on"
+    },
+    "AWS_ACCESS_KEY_ID": {
+      "description": "An AWS access key for the S3 bucket"
+    },
+    "AWS_SECRET_ACCESS_KEY": {
+      "description": "An AWS secret key for the access key"
+    }
   },
   "addons": ["heroku-postgresql"]
 }

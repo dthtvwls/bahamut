@@ -19,7 +19,7 @@
                   <%= link_to '📝', edit_polymorphic_path([user, box, version]) %>
                   <%= link_to '🚮', polymorphic_path([user, box, version]), method: :delete, data: { confirm: 'Are you sure?' } %>
                   <ul>
-                    <% version.providers do |provider| %>
+                    <% version.providers.each do |provider| %>
                       <li>
                         <%= provider.name %>
                         <%= link_to '📝', edit_polymorphic_path([user, box, version, provider]) %>

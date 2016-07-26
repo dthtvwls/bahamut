@@ -4,7 +4,7 @@ class Provider < ApplicationRecord
 
   belongs_to :version
 
-  validates :name, presence: true, uniqueness: { scope: :version_id }, inclusion: { in: ['virtualbox'] }
+  validates :name, presence: true, uniqueness: { scope: :version }, inclusion: { in: ['virtualbox'] }
   validates_associated :version, presence: true
 
   default_scope { order(:name) }

@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :box_id %>
-    <%= f.select :box_id, options_from_collection_for_select([Box.find(params[:box_id])], :id, :name) %>
+    <%= f.select :box_id, options_from_collection_for_select([User.find(params[:user_id]).boxes.find(params[:box_id])], :id, :name) %>
   </div>
 
   <div class="field">
