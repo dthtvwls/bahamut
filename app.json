@@ -11,8 +11,7 @@
       "description": "A basic auth username for end users to connect"
     },
     "AUTH_PASSWORD": {
-      "description": "A password to go with the basic auth username",
-      "generator": "secret"
+      "description": "A password to go with the basic auth username"
     },
     "S3_BUCKET": {
       "description": "An S3 bucket to store images on"
