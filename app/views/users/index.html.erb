@@ -4,39 +4,42 @@
   <% @users.each do |user| %>
     <li>
       <%= user.name %>
-      <%= link_to '📝', edit_polymorphic_path([user]) %>
-      <%= link_to '🚮', polymorphic_path([user]), method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to fa(:edit), edit_polymorphic_path([user]) %>
+      <%= link_to fa(:trash), polymorphic_path([user]), method: :delete, data: { confirm: 'Are you sure?' } %>
       <ul>
         <% user.boxes.each do |box| %>
           <li>
-            <%= box.name %>
-            <%= link_to '📝', edit_polymorphic_path([user, box]) %>
-            <%= link_to '🚮', polymorphic_path([user, box]), method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= "#{user.name}/#{box.name}" %>
+            <%= link_to fa(:file), polymorphic_path([user, box], format: :json) %>
+            <%= link_to fa(:edit), edit_polymorphic_path([user, box]) %>
+            <%= link_to fa(:trash), polymorphic_path([user, box]), method: :delete, data: { confirm: 'Are you sure?' } %>
             <ul>
               <% box.versions.each do |version| %>
                 <li>
                   <%= version.version %>
-                  <%= link_to '📝', edit_polymorphic_path([user, box, version]) %>
-                  <%= link_to '🚮', polymorphic_path([user, box, version]), method: :delete, data: { confirm: 'Are you sure?' } %>
+                  <%= link_to fa(:edit), edit_polymorphic_path([user, box, version]) %>
+                  <%= link_to fa(:trash), polymorphic_path([user, box, version]), method: :delete, data: { confirm: 'Are you sure?' } %>
                   <ul>
                     <% version.providers.each do |provider| %>
                       <li>
                         <%= provider.name %>
-                        <%= link_to '📝', edit_polymorphic_path([user, box, version, provider]) %>
-                        <%= link_to '🚮', polymorphic_path([user, box, version, provider]), method: :delete, data: { confirm: 'Are you sure?' } %>
+                        <%= link_to fa(:upload), polymorphic_path([user, box, version, provider]) %>
+                        <%= link_to fa(:download), provider.box_url.url %>
+                        <%= link_to fa(:edit), edit_polymorphic_path([user, box, version, provider]) %>
+                        <%= link_to fa(:trash), polymorphic_path([user, box, version, provider]), method: :delete, data: { confirm: 'Are you sure?' } %>
                       </li>
                     <% end %>
-                    <li><%= link_to 'New Provider', new_polymorphic_path([user, box, version, version.providers.new]) %></li>
+                    <li><%= link_to fa(:plus), new_polymorphic_path([user, box, version, version.providers.new]) %></li>
                   </ul>
                 </li>
               <% end %>
-              <li><%= link_to 'New Version', new_polymorphic_path([user, box, box.versions.new]) %></li>
+              <li><%= link_to fa(:plus), new_polymorphic_path([user, box, box.versions.new]) %></li>
             </ul>
           </li>
         <% end %>
-        <li><%= link_to 'New Box', new_polymorphic_path([user, user.boxes.new]) %></li>
+        <li><%= link_to fa(:plus), new_polymorphic_path([user, user.boxes.new]) %></li>
       </ul>
     </li>
   <% end %>
-  <li><%= link_to 'New User', new_polymorphic_path([@users.new]) %></li>
+  <li><%= link_to fa(:plus), new_polymorphic_path([@users.new]) %></li>
 </ul>
