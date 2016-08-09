@@ -5,7 +5,7 @@ CarrierWave.configure do |config|
     aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
   }
   config.fog_directory = ENV['S3_BUCKET']
-  config.max_file_size = 1024.megabytes
+  config.max_file_size = 2048.megabytes
   config.validate_filename_format = false
   config.validate_unique_filename = false
 end
