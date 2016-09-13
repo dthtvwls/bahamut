@@ -1,8 +1,8 @@
 {
-  "name": "Bahamut",
-  "description": "Holds up world (Shim Atlas)",
+  "name": "Hypr Catalog",
+  "description": "Host-your-own replacement for Hashicorp's Atlas' Vagrant catalog functionality.",
   "keywords": ["vm", "virtual machine", "image", "box", "vagrant", "packer", "atlas", "hashicorp"],
-  "repository": "https://github.com/JunGroupProductions/bahamut",
+  "repository": "https://github.com/hyprmx/hypr-catalog",
   "scripts": {
     "postdeploy": "bundle exec rake db:schema:load"
   },
@@ -14,7 +14,7 @@
       "description": "A password to go with the basic auth username"
     },
     "S3_BUCKET": {
-      "description": "An S3 bucket to store images on"
+      "description": "An S3 bucket to store box images on"
     },
     "AWS_ACCESS_KEY_ID": {
       "description": "An AWS access key for the S3 bucket"
