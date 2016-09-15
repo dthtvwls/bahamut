@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+p, ol, ul, td {
+    margin: .5em .25em;
+}

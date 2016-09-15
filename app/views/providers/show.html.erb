@@ -23,3 +23,21 @@
 
 <%= link_to 'Edit', edit_user_box_version_provider_path(@provider.params) %> |
 <%= link_to 'Back', users_path %>
+
+<script>
+  document.getElementById('new_box_uploader').addEventListener('submit', function (event) {
+    event.preventDefault()
+
+    new AWS.S3({
+      accessKeyId: '<%= ENV['AWS_ACCESS_KEY_ID'] %>',
+      secretAccessKey: '<%= ENV['AWS_SECRET_ACCESS_KEY'] %>'
+    }).upload({
+      Bucket: '<%= ENV['S3_BUCKET'] %>',
+      Key: document.getElementById('box_uploader_key').value,
+      Body: document.getElementById('box_uploader_box_url').files[0]
+    }, function (err, data) {
+      if (err) alert(err)
+      document.querySelector('input[type=submit]').disabled = false
+    })
+  })
+</script>
