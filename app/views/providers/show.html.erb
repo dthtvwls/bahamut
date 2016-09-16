@@ -18,6 +18,7 @@
   </div>
   <div class="actions">
     <%= f.submit 'Upload' %>
+    <span id="progress"></span>
   </div>
 <% end %>
 
@@ -35,7 +36,9 @@
       Bucket: '<%= ENV['S3_BUCKET'] %>',
       Key: document.getElementById('box_uploader_key').value,
       Body: document.getElementById('box_uploader_box_url').files[0]
-    }, function (err, data) {
+    }).on('httpUploadProgress', function (event) {
+      document.getElementById('progress').innerHTML = (event.loaded / event.total * 100).toFixed(1) + '%'
+    }).send(function (err, data) {
       if (err) alert(err)
       document.querySelector('input[type=submit]').disabled = false
     })
